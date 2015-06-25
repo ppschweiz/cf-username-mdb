@@ -92,11 +92,11 @@ function cf_username_mdb_handler_function($value, $field ,$form){
 	//return new WP_Error( 'error', 'Nope, Sorry. Try again.');
 
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'https://registration.piratenpartei.ch/Validate.aspx');
+	curl_setopt($ch, CURLOPT_URL, $field['config']['apiurl']);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_POST, true);
 	curl_setopt($ch, CURLOPT_FAILONERROR, true);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, array('username' => $value));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, array('username' => $value, 'apikey' => $field['config']['apikey']));
 
 	$response = curl_exec($ch);
 
